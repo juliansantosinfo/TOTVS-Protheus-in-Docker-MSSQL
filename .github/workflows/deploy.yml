@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "master", "main", "20*" ]
+    branches: [ "master", "main", "v*" ]
     paths-ignore:
       - '**/.vscode/**'
       - '**/docs/**'

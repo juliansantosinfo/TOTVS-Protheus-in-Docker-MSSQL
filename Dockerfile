@@ -1,5 +1,6 @@
-# Imagem base oficial do SQL Server 2019
-FROM mcr.microsoft.com/mssql/server:2019-CU32-GDR3-ubuntu-20.04
+ARG IMAGE_BASE=mcr.microsoft.com/mssql/server:2019-CU32-GDR3-ubuntu-20.04
+# hadolint ignore=DL3006
+FROM ${IMAGE_BASE}
 
 LABEL version="2019"
 LABEL description="TOTVS MSSQL"

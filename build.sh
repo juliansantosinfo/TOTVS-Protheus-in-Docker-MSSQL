@@ -224,7 +224,12 @@ EOF
             if [ ! -f "$file" ]; then
                 # Cria um arquivo tar vazio se não existir para evitar erro no COPY do Dockerfile
                 tar -czf "$file" -T /dev/null
-                print_info "Backup '$file' não encontrado; ele será desconsiderado na inicialização do contêiner."
+                # Pula validação de recursos se estiver usando imagem base customizada
+                if [[ "$USING_CUSTOM_BASE" == "true" ]]; then
+                    print_info "Usando imagem base customizada - pulando validação de recursos locais"
+                else
+                    print_info "Backup '$file' não encontrado; ele será desconsiderado na inicialização do contêiner."
+                fi
             fi
         done
 

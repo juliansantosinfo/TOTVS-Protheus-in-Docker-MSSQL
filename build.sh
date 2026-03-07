@@ -218,18 +218,7 @@ EOF
 
         print_success " * Arquivo 'Dockerfile' encontrado."
 
-    # Pula validação de recursos se estiver usando imagem base customizada
-    if [[ "$USING_CUSTOM_BASE" == "true" ]]; then
-        print_info "Usando imagem base customizada - pulando validação de recursos locais"
-    else
-        
-        print_verify "Verificando o diretório '${MSSQL_BACKUP_DIR}'..."
-        check_dir "${MSSQL_BACKUP_DIR}"
-        print_success " * Diretório '${MSSQL_BACKUP_DIR}' encontrado."
-
-        # ----------------------------------------------------------------------
-
-        print_verify "Verificando o arquivo em packages/..."
+    print_verify "Verificando o arquivo em packages/..."
 
         for file in "${MSSQL_BACKUP_FILES[@]}"; do
             if [ ! -f "$file" ]; then
@@ -238,8 +227,6 @@ EOF
                 print_info "Backup '$file' não encontrado; ele será desconsiderado na inicialização do contêiner."
             fi
         done
-
-    fi 
 
 # ----------------------------------------------------
 #   SEÇÃO 5: EXECUÇÃO DO DOCKER BUILD
